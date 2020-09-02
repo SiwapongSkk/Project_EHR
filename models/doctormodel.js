@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var doctorSchema = mongoose.Schema(
   {
     // กำหนด ชื่อและชนิดของ document เรา
+    //***** */
     id_doctor: {
         type: String,
     },
