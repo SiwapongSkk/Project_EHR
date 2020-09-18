@@ -45,4 +45,14 @@ router.delete("/:_id", (req, res) => {
   });
 });
 
+
+// find name patient
+router.get("/:name", (req, res) => {
+  Patient.findById(req.params.user_name_patient).exec((err, data) => {
+  if (err) return res.status(400).send(err);
+  res.status(200).send(data);
+});
+});
+
+
 module.exports = router;
