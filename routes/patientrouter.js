@@ -47,11 +47,19 @@ router.delete("/:_id", (req, res) => {
 
 
 // find name patient
-router.get("/name/:user_name_patient", (req, res) => {
+router.get("/name", (req, res, next) => {
+  const searchedField = req.query.user_name_patient;
+  Patient.find({user_name_patient:{$regex: searchedField,$options: '$i'}})
+        .then(data=>{
+          res.send(data)
+        })
+/*
   Patient.find(req.params.user_name_patient).exec((err, data) => {
   if (err) return res.status(400).send(err);
   res.status(200).send(data);
 });
+*/
+
 });
 
 
