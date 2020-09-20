@@ -45,4 +45,19 @@ router.delete("/:_id", (req, res) => {
   });
 });
 
+// find name doctor
+router.get("/name/:Name", (req, res) => {
+
+  const _Name=req.params.Name
+  const agg =[
+    {
+      $match: { user_name_doctor: _Name }
+  }]
+
+  Doctor.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
 module.exports = router;

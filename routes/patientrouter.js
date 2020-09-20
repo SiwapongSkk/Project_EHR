@@ -45,22 +45,23 @@ router.delete("/:_id", (req, res) => {
   });
 });
 
-
+// Update ครั้งที่ 2 การดีงค่า api แบบเจาะจง
 // find name patient
-router.get("/name", (req, res, next) => {
-  const searchedField = req.query.user_name_patient;
-  Patient.find({user_name_patient:{$regex: searchedField,$options: '$i'}})
-        .then(data=>{
-          res.send(data)
-        })
-/*
-  Patient.find(req.params.user_name_patient).exec((err, data) => {
-  if (err) return res.status(400).send(err);
-  res.status(200).send(data);
-});
-*/
+router.get("/name/:Name", (req, res) => {
 
+  const _Name=req.params.Name
+  const agg =[
+    {
+      $match: { user_name_patient: _Name }
+  }]
+
+  Patient.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
 });
+
+
 
 
 module.exports = router;
