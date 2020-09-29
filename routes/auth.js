@@ -43,10 +43,10 @@ router.post('/register', async (req, res) => {
         //เช็ค
         if (auth) {
 
-        return res.status(200).send("เข้าสู่ระบบเรียบร้อย ----- 111"+auth);
+        return res.status(200).send(auth);
 
         } else {
-        return res.status(400).send("เข้าสู่ระบบไม่ได้ -----000");
+        return res.status(400).send("เข้าสู่ระบบไม่ได้");
 
         }
         }
