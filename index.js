@@ -49,6 +49,11 @@ app.use("/api/examination", Examination);
 var Patient = require("./routes/patientrouter");
 app.use("/api/patient", Patient);
 
+// path สำหรับ MongoDB ของเรา Auth
+var Auth = require("./routes/auth");
+app.use("/api/auth", Auth);
+
+
 app.use((req, res, next) => {
   var err = new Error("ไม่พบ path ที่คุณต้องการ");
   err.status = 404;
