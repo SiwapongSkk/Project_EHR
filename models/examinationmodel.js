@@ -18,7 +18,7 @@ var examinationSchema = mongoose.Schema(
       type: Date
     },
     weight_patient: {
-        type: Number
+        type: String
     },
     height_patient: {
         type: Number
