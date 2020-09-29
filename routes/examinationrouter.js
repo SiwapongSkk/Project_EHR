@@ -23,6 +23,7 @@ router.get("/:_id", (req, res) => {
 // POST (create new data)
 router.post("/", (req, res) => {
   var obj = new Examination(req.body);
+  
   obj.save((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send("เพิ่มข้อมูลการตรวจวัดสุขภาพเรียบร้อย");
