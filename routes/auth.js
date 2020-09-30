@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
       password_patient
     })
     await auth.save()
-    res.status(200).send("สมัครสมาชิกระบบเรียบร้อย ----- 111"+auth);
+    res.status(200).send(auth);
   })
 
 

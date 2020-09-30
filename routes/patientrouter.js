@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
   var obj = new Patient(req.body);
   obj.save((err, data) => {
     if (err) return res.status(400).send(err);
-    res.status(200).send("เพิ่มข้อมูลเรียบร้อย");
+    res.status(200).send(data);
   });
 });
 
