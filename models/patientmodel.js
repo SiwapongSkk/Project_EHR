@@ -11,6 +11,7 @@ var patientSchema = mongoose.Schema(
     user_name_patient: {
       type: String,
       required: true,
+      unique: true
     },
     password_patient: {
       type: String
