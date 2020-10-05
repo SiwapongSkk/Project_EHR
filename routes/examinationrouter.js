@@ -72,14 +72,6 @@ router.post('/findlist/bodytemp', async (req, res) => {
       user_name_patient,
       body_temperature_patient : { $exists: true, $ne: null }
   })
-
-      /*
-      //เปรียบเทียบผ่านการเข้ารหัส
-      if (auth) {
-          const isCorrect = bcrypt.compareSync(password_patient, auth.password_patient)
-      */
-
-      //เช็ค
       
       if (auth) {
 
