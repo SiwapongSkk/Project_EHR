@@ -70,7 +70,7 @@ router.post('/findlist/bodytemp', async (req, res) => {
 
   const auth = await Examination.find({
       user_name_patient,
-      body_temperature_patient : { $exists: true, $ne: null }
+      /*body_temperature_patient : { $exists: true, $ne: null }*/
   })
       
       if (auth) {
