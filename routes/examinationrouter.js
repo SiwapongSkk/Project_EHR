@@ -62,4 +62,35 @@ router.get("/name/:Name", (req, res) => {
   });
 });
 
+
+
+
+router.post('/findlist', async (req, res) => {
+  const { user_name_patient, password_patient } = req.body
+
+  const auth = await Patient.find({
+      user_name_patient,
+      password_patient
+  })
+
+      /*
+      //เปรียบเทียบผ่านการเข้ารหัส
+      if (auth) {
+          const isCorrect = bcrypt.compareSync(password_patient, auth.password_patient)
+      */
+
+      //เช็ค
+      
+      if (auth) {
+
+      return res.status(200).send(auth);
+
+      } else {
+      return res.status(400).send("เข้าสู่ระบบไม่ได้");
+
+      }
+      }
+  
+)
+
 module.exports = router;
