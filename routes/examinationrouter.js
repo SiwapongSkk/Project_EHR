@@ -65,11 +65,12 @@ router.get("/name/:Name", (req, res) => {
 
 
 
-router.post('/findlist', async (req, res) => {
+router.post('/findlist/bodytemp', async (req, res) => {
   const { user_name_patient } = req.body
 
   const auth = await Examination.find({
-      user_name_patient
+      user_name_patient,
+      body_temperature_patient : { $exists: true, $ne: null }
   })
 
       /*
