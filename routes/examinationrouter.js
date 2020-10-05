@@ -65,23 +65,46 @@ router.get("/name/:Name", (req, res) => {
 
 
 
-router.post('/findlist/bodytemp/:Name', async (req, res) => {
-  const { user_name_patient } = req.params.Name
+// find examination by name patient
+router.get("/list/bodyt/:Name", (req, res) => {
 
-  const auth = await Examination.find({
-      user_name_patient,
+  const _Name=req.params.Name
+  const agg =[
+    {
+      $match: { user_name_patient: _Name }
+  }]
+
+  Examination.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+
+
+
+router.get('/findlist/bodytemp/:Name', (req, res) => {
+  const  user_name  = req.params.Name
+
+  const auth =[
+    {
+      $match: { user_name_patient: _Name }
+  }]
+  
+  /*
+  await Examination.find({
+    $match: { user_name_patient: user_name } ,
       body_temperature_patient : { $exists: true, $ne: null }
   })
+   */   
+  Examination.aggregate(auth).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });    
       
-      if (auth) {
+  
+  }
 
-      return res.status(200).send(auth);
-
-      } else {
-      return res.status(400).send("เข้าสู่ระบบไม่ได้");
-
-      }
-      }
   
 )
 
