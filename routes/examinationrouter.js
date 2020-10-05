@@ -66,11 +66,10 @@ router.get("/name/:Name", (req, res) => {
 
 
 router.post('/findlist', async (req, res) => {
-  const { user_name_patient, password_patient } = req.body
+  const { user_name_patient } = req.body
 
-  const auth = await Patient.find({
-      user_name_patient,
-      password_patient
+  const auth = await Examination.find({
+      user_name_patient
   })
 
       /*
