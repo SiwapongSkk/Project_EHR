@@ -71,8 +71,9 @@ router.get("/list/bodyt/:Name", (req, res) => {
   const _Name=req.params.Name
   const agg =[
     {
-      $match: { user_name_patient: _Name }
-  }]
+     $match: { user_name_patient: _Name,"body_temperature_patient": { $exists: true,$ne: null} }
+    }
+    ]
 
   Examination.aggregate(agg).exec((err, data) => {
     if (err) return res.status(400).send(err);
@@ -88,15 +89,10 @@ router.get('/findlist/bodytemp/:Name', (req, res) => {
 
   const auth =[
     {
-      $match: { user_name_patient: _Name }
+      $match: { user_name_patient: user_name ,"body_temperature_patient": { $exists: true,$ne: null}}
   }]
   
-  /*
-  await Examination.find({
-    $match: { user_name_patient: user_name } ,
-      body_temperature_patient : { $exists: true, $ne: null }
-  })
-   */   
+
   Examination.aggregate(auth).exec((err, data) => {
     if (err) return res.status(400).send(err);
     res.status(200).send(data);
