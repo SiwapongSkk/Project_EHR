@@ -110,7 +110,8 @@ router.get("/list/bloodp/:Name", (req, res) => {
       ,"diastolic_blood_pressure_patient": { $exists: true,$ne: null},
       "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
       }
-    }
+    },
+    { $sort: {  _id: -1 } }
     ]
 
   Examination.aggregate(agg).exec((err, data) => {
@@ -128,7 +129,8 @@ router.get("/list/heartr/:Name", (req, res) => {
     {
      $match: { user_name_patient: _Name,"heart_rate_patient": { $exists: true,$ne: null},
      "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
-    }
+    },
+    { $sort: {  _id: -1 } }
     ]
 
   Examination.aggregate(agg).exec((err, data) => {
@@ -145,7 +147,8 @@ router.get("/list/weight/:Name", (req, res) => {
     {
      $match: { user_name_patient: _Name,"weight_patient": { $exists: true,$ne: null},
      "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
-    }
+    },
+    { $sort: {  _id: -1 } }
     ]
 
   Examination.aggregate(agg).exec((err, data) => {
@@ -162,7 +165,8 @@ router.get("/list/height/:Name", (req, res) => {
     {
      $match: { user_name_patient: _Name,"height_patient": { $exists: true,$ne: null},
      "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
-    }
+    },
+    { $sort: {  _id: -1 } }
     ]
 
   Examination.aggregate(agg).exec((err, data) => {
@@ -179,7 +183,8 @@ router.get("/list/glucose/:Name", (req, res) => {
     {
      $match: { user_name_patient: _Name,"glucose_patient": { $exists: true,$ne: null},
      "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
-    }
+    },
+    { $sort: {  _id: -1 } }
     ]
 
   Examination.aggregate(agg).exec((err, data) => {
