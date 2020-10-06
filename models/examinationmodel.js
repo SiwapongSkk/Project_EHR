@@ -42,10 +42,12 @@ var examinationSchema = mongoose.Schema(
     status_patient: {
         type: String
     },
-    date: { 
-        type: String },
-    time: { 
-        type: String }
+    date_add: { 
+        type: String 
+    },
+    time_add: { 
+        type: String 
+    }
 
   },
   {
