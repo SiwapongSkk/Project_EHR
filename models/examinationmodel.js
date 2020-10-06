@@ -19,7 +19,7 @@ var examinationSchema = mongoose.Schema(
       type: Date
     },
     weight_patient: {
-        type: String
+        type: Number
     },
     height_patient: {
         type: Number
@@ -40,9 +40,12 @@ var examinationSchema = mongoose.Schema(
         type: Number
     },
     status_patient: {
-      type: String
+        type: String
     },
-    date: { type: Date, default: Date.now }
+    date: { 
+        type: String },
+    time: { 
+        type: String }
 
   },
   {
