@@ -105,7 +105,8 @@ router.get("/list/bloodp/:Name", (req, res) => {
   const agg =[
     {
       $match: { user_name_patient: _Name,"systolic_blood_pressure_patient": { $exists: true,$ne: null}
-      ,"diastolic_blood_pressure_patient": { $exists: true,$ne: null}
+      ,"diastolic_blood_pressure_patient": { $exists: true,$ne: null},
+      "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
       }
     }
     ]
@@ -123,7 +124,8 @@ router.get("/list/heartr/:Name", (req, res) => {
   const _Name=req.params.Name
   const agg =[
     {
-     $match: { user_name_patient: _Name,"heart_rate_patient": { $exists: true,$ne: null}}
+     $match: { user_name_patient: _Name,"heart_rate_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
     }
     ]
 
@@ -139,7 +141,8 @@ router.get("/list/weight/:Name", (req, res) => {
   const _Name=req.params.Name
   const agg =[
     {
-     $match: { user_name_patient: _Name,"weight_patient": { $exists: true,$ne: null}}
+     $match: { user_name_patient: _Name,"weight_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
     }
     ]
 
@@ -155,7 +158,8 @@ router.get("/list/height/:Name", (req, res) => {
   const _Name=req.params.Name
   const agg =[
     {
-     $match: { user_name_patient: _Name,"height_patient": { $exists: true,$ne: null}}
+     $match: { user_name_patient: _Name,"height_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
     }
     ]
 
@@ -171,7 +175,8 @@ router.get("/list/glucose/:Name", (req, res) => {
   const _Name=req.params.Name
   const agg =[
     {
-     $match: { user_name_patient: _Name,"glucose_patient": { $exists: true,$ne: null}}
+     $match: { user_name_patient: _Name,"glucose_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}}
     }
     ]
 
