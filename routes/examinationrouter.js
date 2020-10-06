@@ -72,7 +72,7 @@ router.get("/list/bodyt/:Name", (req, res) => {
   const agg =[
     {
      $match: { user_name_patient: _Name,"body_temperature_patient": { $exists: true,$ne: null},
-     "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null},'timestamp': -1 }
+     "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null},'_id': -1 }
     }
     ]
 
