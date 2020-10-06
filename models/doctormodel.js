@@ -28,7 +28,9 @@ var doctorSchema = mongoose.Schema(
     },
     gender_doctor: {
         type: String
-    }
+    },
+    
+    date: { type: Date, default: Date.now },
   },
   {
     timestamps: true,
