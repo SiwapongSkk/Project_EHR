@@ -36,6 +36,9 @@ var examinationSchema = mongoose.Schema(
     body_temperature_patient: {
         type: Number
     },
+    glucose_patient: {
+        type: Number
+    },
     status_patient: {
       type: String
     },
