@@ -38,7 +38,8 @@ var examinationSchema = mongoose.Schema(
     },
     status_patient: {
       type: String
-    }
+    },
+    date: { type: Date, default: Date.now }
 
   },
   {

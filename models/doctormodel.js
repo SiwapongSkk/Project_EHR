@@ -30,7 +30,7 @@ var doctorSchema = mongoose.Schema(
         type: String
     },
     
-    date: { type: Date, default: Date.now },
+    date: { type: Date, default: Date.now }
   },
   {
     timestamps: true,
