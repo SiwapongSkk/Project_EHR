@@ -85,91 +85,73 @@ router.post("/refresh/BP",(req,res)=>{
 // find one Heart Rate
 router.post("/refresh/heartrate",(req,res)=>{
   const { user_name_patient} = req.body
-  const agg = [
-      {
-        $match:{user_name_patient,"heart_rate_patient": { $exists: true,$ne: null}, 
-        "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
-                }
-      }, 
-        {$sort: {  _id: -1 }},{ $limit : 1 }
-    ]
-        
-    Examination.aggregate(agg).exec((err, data) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).send(data);
-    });
+
+  const agg = 
+  { user_name_patient: user_name_patient,heart_rate_patient: { $exists: true,$ne: null} }
+  
+  Examination.findOne(agg).sort({_id:-1}).limit(1).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+
 })
 
 // find one Body Temp
 router.post("/refresh/temp",(req,res)=>{
   const { user_name_patient} = req.body
-  const agg = [
-      {
-        $match:{user_name_patient,"body_temperature_patient": { $exists: true,$ne: null}, 
-        "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
-                }
-      }, 
-        {$sort: {  _id: -1 }},{ $limit : 1 }
-    ]
-        
-    Examination.aggregate(agg).exec((err, data) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).send(data);
-    });
+
+  const agg = 
+  { user_name_patient: user_name_patient,body_temperature_patient: { $exists: true,$ne: null} }
+  
+  Examination.findOne(agg).sort({_id:-1}).limit(1).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+  
 })
 
 // find one Weight
 router.post("/refresh/weight",(req,res)=>{
   const { user_name_patient} = req.body
-  const agg = [
-      {
-        $match:{user_name_patient,"weight_patient": { $exists: true,$ne: null}, 
-        "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
-                }
-      }, 
-        {$sort: {  _id: -1 }},{ $limit : 1 }
-    ]
-        
-    Examination.aggregate(agg).exec((err, data) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).send(data);
-    });
+
+  const agg = 
+  { user_name_patient: user_name_patient,weight_patient: { $exists: true,$ne: null} }
+  
+  Examination.findOne(agg).sort({_id:-1}).limit(1).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+
+
 })
 
 // find one Height
 router.post("/refresh/height",(req,res)=>{
   const { user_name_patient} = req.body
-  const agg = [
-      {
-        $match:{user_name_patient,"height_patient": { $exists: true,$ne: null}, 
-        "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
-                }
-      }, 
-        {$sort: {  _id: -1 }},{ $limit : 1 }
-    ]
-        
-    Examination.aggregate(agg).exec((err, data) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).send(data);
-    });
+
+  const agg = 
+  { user_name_patient: user_name_patient,height_patient: { $exists: true,$ne: null} }
+  
+  Examination.findOne(agg).sort({_id:-1}).limit(1).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+
 })
 
 // find one Glucose
 router.post("/refresh/glucose",(req,res)=>{
   const { user_name_patient} = req.body
-  const agg = [
-      {
-        $match:{user_name_patient,"glucose_patient": { $exists: true,$ne: null}, 
-        "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
-                }
-      }, 
-        {$sort: {  _id: -1 }},{ $limit : 1 }
-    ]
-        
-    Examination.aggregate(agg).exec((err, data) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).send(data);
-    });
+
+  const agg = 
+  { user_name_patient: user_name_patient,glucose_patient: { $exists: true,$ne: null} }
+  
+  Examination.findOne(agg).sort({_id:-1}).limit(1).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+
+
 })
 
 
