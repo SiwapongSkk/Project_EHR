@@ -47,6 +47,21 @@ var examinationSchema = mongoose.Schema(
     },
     time_add: { 
         type: String 
+    },
+    day: { 
+        type: Number
+    },
+    mm: { 
+        type: Number
+    },
+    yy: { 
+        type: Number
+    },
+    hh: { 
+        type: Number
+    },
+    minute: { 
+        type: Number
     }
 
   },

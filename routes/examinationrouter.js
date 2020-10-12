@@ -69,22 +69,18 @@ router.get("/name/:Name", (req, res) => {
 // find one SYS DIA
 router.post("/refresh/BP",(req,res)=>{
   const { user_name_patient} = req.body
-  const agg = [
-      {
-        $match:{user_name_patient,"systolic_blood_pressure_patient": { $exists: true,$ne: null}, 
-        "diastolic_blood_pressure_patient": { $exists: true,$ne: null},
-        "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
-                }
-      }, 
-        {$sort: {  _id: -1 }},{ $limit : 1 }
-    ]
-        
-    Examination.aggregate(agg).exec((err, data) => {
+  
+  const agg = 
+    { user_name_patient: user_name_patient,systolic_blood_pressure_patient: { $exists: true,$ne: null}
+    ,diastolic_blood_pressure_patient: { $exists: true,$ne: null} }
+    
+     
+    Examination.findOne(agg).sort({_id:-1}).limit(1).exec((err, data) => {
       if (err) return res.status(400).send(err);
       res.status(200).send(data);
     });
-})
 
+})
 
 // find one Heart Rate
 router.post("/refresh/heartrate",(req,res)=>{
@@ -177,8 +173,28 @@ router.post("/refresh/glucose",(req,res)=>{
 })
 
 
+// find one all
+
+router.post("/refresh/all",(req,res)=>{
+  const { user_name_patient} = req.body
+  
+  const agg = [
+      {
+        $match:{user_name_patient,"glucose_patient": { $exists: true,$ne: null}, 
+        "date_add": { $exists: true,$ne: null},"time_add": { $exists: true,$ne: null}
+                }
+      }, 
+        {$sort: {  _id: -1 }},{ $limit : 1 }
 
 
+
+    ]
+        
+    Examination.aggregate(agg).exec((err, data) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).send(data);
+    });
+})
 
 
 
@@ -297,5 +313,39 @@ router.get("/list/glucose/:Name", (req, res) => {
     res.status(200).send(data);
   });
 });
+
+/*---------------------------------------------------------------------------------------------------------*/ 
+
+
+// find Graph examination by name patient of body temp
+// เปลี่ยน _id เป็นอย่างอื่นไม่ได้
+router.get("/graph/bodyt/:Name", (req, res) => {
+
+  const _Name=req.params.Name
+  const agg =[
+
+    {
+     $match: { user_name_patient: _Name, "body_temperature_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null}, "time_add": { $exists: true,$ne: null} }
+    },
+    {
+      $group:
+        {
+          _id: "$date_add",
+          avgData: { $avg: "$body_temperature_patient" }
+        }
+    },
+    { $sort: {  _id: -1 } },
+
+    
+    ]
+
+  Examination.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+
 
 module.exports = router;
