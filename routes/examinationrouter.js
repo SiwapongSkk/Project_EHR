@@ -298,6 +298,35 @@ router.get("/list/glucose/:Name", (req, res) => {
 
 /*---------------------------------------------------------------------------------------------------------*/ 
 
+// find Graph examination by name patient of blood pressure
+// เปลี่ยน _id เป็นอย่างอื่นไม่ได้
+router.get("/graph/bloodp/:Name", (req, res) => {
+
+  const _Name=req.params.Name
+  const agg =[
+
+    {
+     $match: { user_name_patient: _Name, "systolic_blood_pressure_patient": { $exists: true,$ne: null},
+     "diastolic_blood_pressure_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null}, "time_add": { $exists: true,$ne: null} }
+    },
+    {
+      $group:
+        {
+          _id: "$date_add",
+          avgDatasys: { $avg: "$systolic_blood_pressure_patient" },
+          avgDatadia: { $avg: "$diastolic_blood_pressure_patient" },
+        }
+    },
+    { $sort: {  _id: -1 } },{$limit : 7}
+
+    ]
+
+  Examination.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
 
 // find Graph examination by name patient of body temp
 // เปลี่ยน _id เป็นอย่างอื่นไม่ได้
@@ -317,9 +346,8 @@ router.get("/graph/bodyt/:Name", (req, res) => {
           avgData: { $avg: "$body_temperature_patient" }
         }
     },
-    { $sort: {  _id: -1 } },
+    { $sort: {  _id: -1 } },{$limit : 7}
 
-    
     ]
 
   Examination.aggregate(agg).exec((err, data) => {
@@ -329,5 +357,116 @@ router.get("/graph/bodyt/:Name", (req, res) => {
 });
 
 
+// find Graph examination by name patient of heart rate
+// เปลี่ยน _id เป็นอย่างอื่นไม่ได้
+router.get("/graph/heartr/:Name", (req, res) => {
+
+  const _Name=req.params.Name
+  const agg =[
+
+    {
+     $match: { user_name_patient: _Name, "heart_rate_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null}, "time_add": { $exists: true,$ne: null} }
+    },
+    {
+      $group:
+        {
+          _id: "$date_add",
+          avgData: { $avg: "$heart_rate_patient" }
+        }
+    },
+    { $sort: {  _id: -1 } },{$limit : 7}
+
+    ]
+
+  Examination.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// find Graph examination by name patient of weight
+// เปลี่ยน _id เป็นอย่างอื่นไม่ได้
+router.get("/graph/weight/:Name", (req, res) => {
+
+  const _Name=req.params.Name
+  const agg =[
+
+    {
+     $match: { user_name_patient: _Name, "weight_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null}, "time_add": { $exists: true,$ne: null} }
+    },
+    {
+      $group:
+        {
+          _id: "$date_add",
+          avgData: { $avg: "$weight_patient" }
+        }
+    },
+    { $sort: {  _id: -1 } },{$limit : 7}
+
+    ]
+
+  Examination.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// find Graph examination by name patient of height
+// เปลี่ยน _id เป็นอย่างอื่นไม่ได้
+router.get("/graph/height/:Name", (req, res) => {
+
+  const _Name=req.params.Name
+  const agg =[
+
+    {
+     $match: { user_name_patient: _Name, "height_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null}, "time_add": { $exists: true,$ne: null} }
+    },
+    {
+      $group:
+        {
+          _id: "$date_add",
+          avgData: { $avg: "$height_patient" }
+        }
+    },
+    { $sort: {  _id: -1 } },{$limit : 7}
+
+    ]
+
+  Examination.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
+
+// find Graph examination by name patient of glucose
+// เปลี่ยน _id เป็นอย่างอื่นไม่ได้
+router.get("/graph/glucose/:Name", (req, res) => {
+
+  const _Name=req.params.Name
+  const agg =[
+
+    {
+     $match: { user_name_patient: _Name, "glucose_patient": { $exists: true,$ne: null},
+     "date_add": { $exists: true,$ne: null}, "time_add": { $exists: true,$ne: null} }
+    },
+    {
+      $group:
+        {
+          _id: "$date_add",
+          avgData: { $avg: "$glucose_patient" }
+        }
+    },
+    { $sort: {  _id: -1 } },{$limit : 7}
+
+    ]
+
+  Examination.aggregate(agg).exec((err, data) => {
+    if (err) return res.status(400).send(err);
+    res.status(200).send(data);
+  });
+});
 
 module.exports = router;
