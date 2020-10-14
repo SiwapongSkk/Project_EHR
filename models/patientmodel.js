@@ -44,7 +44,7 @@ var patientSchema = mongoose.Schema(
       type: Number
     },
     mobile_phone_number_patient: {
-      type: Number
+      type: String
     },
     email_patient: {
       type: String
